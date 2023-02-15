@@ -1,8 +1,13 @@
 <resources>
-    <string name="app_name">ScooterSharing app V2</string>
-    <string name="insert_name">Name</string>
-    <string name="insert_location">Location</string>
+    <string name="app_name">ScooterSharing app V3</string>
+    <string name="scooter_sharing">Scooter Sharing</string>
     <string name="start_ride">Start Ride</string>
+    <string name="update_ride">Update Ride</string>
+    <string name="start_name">Enter the scooter name</string>
+    <string name="start_location">Enter your location</string>
+    <string name="update_name">The current scooter name</string>
+    <string name="update_location">The current scooter location</string>
     <string name="version">API Level %1$d</string>
     <string name="ride_started">Ride started using %1$s.</string>
+    <string name="ride_updated">Ride updated using %1$s.</string>
 </resources>

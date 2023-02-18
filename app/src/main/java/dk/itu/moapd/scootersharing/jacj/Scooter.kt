@@ -1,5 +1,8 @@
 package dk.itu.moapd.scootersharing.jacj
 
+import java.text.SimpleDateFormat
+import java.util.*
+
 /**
  * A Scooter object
  *
@@ -16,8 +19,12 @@ class Scooter(var name: String, _location: String, private var timestamp: Long =
             field = newLocation
             timestamp = System.currentTimeMillis()
         }
-
+    fun formatDate(date: Long): String {
+        val date = Date(date)
+        val format = SimpleDateFormat("HH:mm dd/MM yyyy")
+        return format.format(date).toString()
+    }
     override fun toString(): String {
-        return "Scooter(name=$name, location=$location, timestamp=$timestamp)"
+        return "Scooter(name=$name, location=$location, timestamp=${formatDate(timestamp)})"
     }
 }

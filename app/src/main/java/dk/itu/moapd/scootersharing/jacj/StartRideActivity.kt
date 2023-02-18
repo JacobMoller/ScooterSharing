@@ -31,7 +31,7 @@ class StartRideActivity : AppCompatActivity() {
                 val location = editTextLocation.text.toString().trim()
                 s.setLocation(location) //ASK TA. Should i still have setLocation methods?
 
-                Snackbar.make(binding.root, getString(R.string.ride_started, s.currentScooter.toString()), Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.root.rootView, getString(R.string.ride_started, s.currentScooter.toString()), Snackbar.LENGTH_SHORT).show()
             }
         }
     }

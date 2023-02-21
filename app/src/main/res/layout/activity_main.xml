@@ -9,17 +9,18 @@
     android:id="@+id/scooter_sharing_title"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textAlignment="center"
-    android:padding="24dp"
+    android:gravity="center_horizontal"
+    android:layout_marginTop="20dp"
     android:textSize="20sp"
-    tools:text="@string/scooter_sharing" />
+    android:textColor="@color/black"
+    android:text="@string/scooter_sharing" />
     <!-- Button to start a ride -->
     <Button
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/start_ride_button"
-        android:layout_margin="15dp"
+        android:layout_margin="5dp"
         android:text="@string/start_ride"/>
     <!-- Button to update a ride -->
     <Button
@@ -36,4 +37,17 @@
         android:textAlignment="center"
         android:padding="24dp"
         tools:text="@string/version" />
+    <Button
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_rides_button"
+        android:layout_margin="15dp"
+        android:text="@string/list_rides"/>
+    <ListView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ride_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 </LinearLayout>

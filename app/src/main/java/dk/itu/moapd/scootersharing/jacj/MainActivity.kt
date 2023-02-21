@@ -3,17 +3,26 @@ package dk.itu.moapd.scootersharing.jacj
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import dk.itu.moapd.scootersharing.jacj.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        lateinit var ridesDB: RidesDB
+    }
+
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ridesDB = RidesDB.get(this)
 
         with(binding)
         {
@@ -28,9 +37,27 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
+            listRidesButton.setOnClickListener {
+                if(rideListView.visibility == View.GONE){
+                    rideListView.visibility = View.VISIBLE
+                }
+                else{
+                    rideListView.visibility = View.GONE
+                }
+            }
+
             // API Level
             val version = Build.VERSION.SDK_INT
             apiLevel.text = getString(R.string.version, version)
+
+            //Create custom adapter
+            refresh(rideListView)
         }
+    }
+
+    fun refresh(rideListView: ListView) {
+        val adapter = RideListAdapter(this@MainActivity, R.layout.list_rides, ridesDB.getRidesList())
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        rideListView.adapter = adapter
     }
 }

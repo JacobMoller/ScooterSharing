@@ -8,7 +8,7 @@ import dk.itu.moapd.scootersharing.jacj.databinding.ActivityStartRideBinding
 
 class StartRideActivity : AppCompatActivity() {
     companion object {
-        lateinit var s: Shared
+        lateinit var ridesDB: RidesDB
     }
 
     private lateinit var binding: ActivityStartRideBinding
@@ -19,7 +19,7 @@ class StartRideActivity : AppCompatActivity() {
         binding = ActivityStartRideBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        s = Shared
+        ridesDB = RidesDB.get(this)
 
         with(binding)
         {
@@ -27,11 +27,11 @@ class StartRideActivity : AppCompatActivity() {
             startRideButton.setOnClickListener {
                 // Update the object attributes.
                 val name = editTextName.text.toString().trim()
-                s.setName(name)
                 val location = editTextLocation.text.toString().trim()
-                s.setLocation(location) //ASK TA. Should i still have setLocation methods?
+                ridesDB.addScooter(name, location)
+                ridesDB.setCurrentScooter(name) //TODO: Is this the right approach?
 
-                Snackbar.make(binding.root.rootView, getString(R.string.ride_started, s.currentScooter.toString()), Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.root.rootView, getString(R.string.ride_started, ridesDB.getCurrentScooterInfo()), Snackbar.LENGTH_SHORT).show()
             }
         }
     }

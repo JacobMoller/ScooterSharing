@@ -36,11 +36,13 @@ class MainActivity : AppCompatActivity() {
             }
 
             listRidesButton.setOnClickListener {
-                if(rideListView.visibility == View.GONE){
+                if(rideListViewGroup.visibility == View.GONE){
                     rideListView.visibility = View.VISIBLE
+                    rideListViewGroup.visibility = View.VISIBLE
                 }
                 else{
                     rideListView.visibility = View.GONE
+                    rideListViewGroup.visibility = View.GONE
                 }
             }
 

@@ -40,6 +40,12 @@ class RidesDB private constructor(context: Context) {
         rides.add(
             Scooter("CPH010", "Lufthavn", randomDate())
         )
+        rides.add(
+            Scooter("CPH011", "Lufthavn", randomDate())
+        )
+        rides.add(
+            Scooter("CPH012", "Lufthavn", randomDate())
+        )
     }
 
     fun getRidesList(): List<Scooter> {
@@ -56,16 +62,10 @@ class RidesDB private constructor(context: Context) {
     }
 
     fun updateCurrentScooter(location: String) {
-        val index = rides.indexOfFirst {
-            it.name == getCurrentScooter()?.name
-        }
-        val scooter = rides[index]
-        scooter.location = location
-
-        rides[index] = scooter
+        rides.last().location = location
     }
 
-    fun getCurrentScooter(): Scooter? = rides.last()
+    fun getCurrentScooter(): Scooter = rides.last()
 
     fun getCurrentScooterInfo(): String = getCurrentScooter().toString()
 

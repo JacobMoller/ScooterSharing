@@ -14,7 +14,6 @@ class UpdateRideActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUpdateRideBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
         binding = ActivityUpdateRideBinding.inflate(layoutInflater)
         setContentView(binding.root)

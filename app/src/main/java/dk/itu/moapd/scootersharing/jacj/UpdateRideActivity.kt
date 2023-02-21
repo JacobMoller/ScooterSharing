@@ -24,7 +24,7 @@ class UpdateRideActivity : AppCompatActivity() {
         with(binding)
         {
             if(ridesDB.getCurrentScooter() == null){
-                editTextName.setText("ERROR - NULL")
+                editTextName.setText(R.string.no_scooter_selected)
             }
             else {
                 editTextName.setText(ridesDB.getCurrentScooter()?.name)

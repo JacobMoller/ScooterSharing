@@ -1,18 +1,13 @@
 package dk.itu.moapd.scootersharing.jacj
 
 import android.content.Context
-import android.util.Log
 import java.util.Random
 import kotlin.collections.ArrayList
-
-private const val TAG = "RidesDB"
 
 class RidesDB private constructor(context: Context) {
 
     private val rides = ArrayList <Scooter >()
     companion object : RidesDBHolder<RidesDB, Context>(::RidesDB)
-
-    private var currentScooterName: String = "" //TODO: Is this the right approach?
 
     init {
         rides.add(
@@ -70,13 +65,9 @@ class RidesDB private constructor(context: Context) {
         rides[index] = scooter
     }
 
-    fun getCurrentScooter(): Scooter? = rides.find { it.name == currentScooterName } //TODO: Is this ok?
+    fun getCurrentScooter(): Scooter? = rides.last()
 
     fun getCurrentScooterInfo(): String = getCurrentScooter().toString()
-
-    fun setCurrentScooter(newCurrentScooterName: String) {
-        currentScooterName = newCurrentScooterName
-    } //TODO: Is this the right approach?
 
     /**
      * Generate a random timestamp in the last 365 days. *

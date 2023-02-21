@@ -6,26 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import android.widget.Toast
-import androidx.recyclerview.widget.RecyclerView
-import dk.itu.moapd.scootersharing.jacj.databinding.ListRidesBinding
-
-/*class RideHolder(
-    private val binding: ListRidesBinding
-) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(ride: Scooter) {
-        binding.rideName.text = ride.name
-        binding.rideLocation.text = ride.location
-        binding.rideDate.text = ride.formatDate(ride.timestamp)
-
-        binding.root.setOnClickListener {
-            Toast.makeText(
-                binding.root.context,
-                "${ride.name} clicked!",
-                Toast.LENGTH_SHORT
-            ).show() }
-    }
-}*/
 
 class RideListAdapter(
     context: Context,
@@ -51,7 +31,7 @@ class RideListAdapter(
             val inflater = LayoutInflater.from(context)
             view = inflater.inflate(resource, parent, false)
             viewHolder = ViewHolder(view)
-            view.setTag(viewHolder);
+            view.tag = viewHolder
         } else {
             viewHolder = view.tag as ViewHolder
         }
@@ -60,26 +40,8 @@ class RideListAdapter(
         val ride = getItem(position)
         viewHolder.name.text = ride?.name
         viewHolder.location.text = ride?.location
-        viewHolder.date.text = ride?.timestamp?.let { ride?.formatDate(it) }
+        viewHolder.date.text = ride?.timestamp?.let { ride.formatDate(it) }
 
         return view!!
     }
 }
-
-/*class RideListAdapter(
-    private val rides: List<Scooter>
-) : RecyclerView.Adapter<RideHolder>() {
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ) : RideHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding = ListRidesBinding.inflate(inflater, parent, false)
-        return RideHolder(binding)
-    }
-    override fun onBindViewHolder(holder: RideHolder, position: Int) {
-        val scooter = rides[position]
-        holder.bind(scooter)
-    }
-    override fun getItemCount() = rides.size
-}*/

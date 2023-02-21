@@ -29,7 +29,6 @@ class StartRideActivity : AppCompatActivity() {
                 val name = editTextName.text.toString().trim()
                 val location = editTextLocation.text.toString().trim()
                 ridesDB.addScooter(name, location)
-                ridesDB.setCurrentScooter(name) //TODO: Is this the right approach?
 
                 Snackbar.make(binding.root.rootView, getString(R.string.ride_started, ridesDB.getCurrentScooterInfo()), Snackbar.LENGTH_SHORT).show()
             }

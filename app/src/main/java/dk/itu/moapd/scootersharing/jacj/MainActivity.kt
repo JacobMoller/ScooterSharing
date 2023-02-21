@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import dk.itu.moapd.scootersharing.jacj.databinding.ActivityMainBinding
@@ -51,13 +50,9 @@ class MainActivity : AppCompatActivity() {
             apiLevel.text = getString(R.string.version, version)
 
             //Create custom adapter
-            refresh(rideListView)
+            val adapter = RideListAdapter(this@MainActivity, R.layout.list_rides, ridesDB.getRidesList())
+            binding = ActivityMainBinding.inflate(layoutInflater)
+            rideListView.adapter = adapter
         }
-    }
-
-    fun refresh(rideListView: ListView) {
-        val adapter = RideListAdapter(this@MainActivity, R.layout.list_rides, ridesDB.getRidesList())
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        rideListView.adapter = adapter
     }
 }

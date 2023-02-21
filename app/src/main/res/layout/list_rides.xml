@@ -10,16 +10,16 @@
         android:id="@+id/ride_name"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="Ride name"
+        android:text="@string/default_ride_name"
         android:textStyle="bold"/>
     <TextView
         android:id="@+id/ride_location"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="Ride location"/>
+        android:text="@string/default_ride_location"/>
     <TextView
         android:id="@+id/ride_date"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="Ride date"/>
+        android:text="@string/default_ride_date"/>
 </LinearLayout>

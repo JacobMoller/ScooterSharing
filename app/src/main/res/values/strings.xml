@@ -15,4 +15,5 @@
     <string name="default_ride_name">Ride name</string>
     <string name="default_ride_location">Ride location</string>
     <string name="default_ride_date">Ride date</string>
+    <string name="list_ride_click">You clicked ride with the name: %1$s</string>
 </resources>

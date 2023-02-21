@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import android.widget.Toast
 
 class RideListAdapter(
     context: Context,
@@ -41,6 +42,13 @@ class RideListAdapter(
         viewHolder.name.text = ride?.name
         viewHolder.location.text = ride?.location
         viewHolder.date.text = ride?.timestamp?.let { ride.formatDate(it) }
+        view?.setOnClickListener {
+            Toast.makeText(
+                view.context,
+                context.getString(R.string.list_ride_click, ride?.name),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
 
         return view!!
     }

@@ -9,17 +9,17 @@
     android:id="@+id/scooter_sharing_title"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textAlignment="center"
-    android:padding="24dp"
+    android:gravity="center_horizontal"
     android:textSize="20sp"
-    tools:text="@string/scooter_sharing" />
+    android:textColor="@color/black"
+    android:text="@string/scooter_sharing" />
     <!-- Button to start a ride -->
     <Button
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/start_ride_button"
-        android:layout_margin="15dp"
+        android:layout_margin="5dp"
         android:text="@string/start_ride"/>
     <!-- Button to update a ride -->
     <Button
@@ -36,4 +36,47 @@
         android:textAlignment="center"
         android:padding="24dp"
         tools:text="@string/version" />
+    <Button
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_rides_button"
+        android:layout_margin="15dp"
+        android:text="@string/list_rides"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ride_list_view_group"
+        android:visibility="gone"
+        android:orientation="vertical">
+    <com.google.android.flexbox.FlexboxLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:justifyContent="space_between">
+        <TextView
+            android:id="@+id/ride_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:text="@string/default_ride_name"/>
+        <TextView
+            android:id="@+id/ride_location"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:text="@string/default_ride_location"/>
+        <TextView
+            android:id="@+id/ride_date"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:text="@string/default_ride_date"/>
+    </com.google.android.flexbox.FlexboxLayout>
+    <ListView
+        android:id="@+id/ride_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    </LinearLayout>
 </LinearLayout>

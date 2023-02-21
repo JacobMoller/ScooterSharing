@@ -8,29 +8,33 @@ import dk.itu.moapd.scootersharing.jacj.databinding.ActivityUpdateRideBinding
 
 class UpdateRideActivity : AppCompatActivity() {
     companion object {
-        lateinit var s: Shared
+        lateinit var ridesDB: RidesDB
     }
 
     private lateinit var binding: ActivityUpdateRideBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
         binding = ActivityUpdateRideBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        s = Shared
+        ridesDB = RidesDB.get(this)
 
         with(binding)
         {
-            editTextName.setText(s.currentScooter.name)
+            if(ridesDB.getCurrentScooter() == null){
+                editTextName.setText(R.string.no_scooter_selected)
+            }
+            else {
+                editTextName.setText(ridesDB.getCurrentScooter()?.name)
+            }
             //Start ride button
             updateRideButton.setOnClickListener {
                 // Update the object attributes.
                 val location = editTextLocation.text.toString().trim()
-                s.setLocation(location) //ASK TA. Should i still have setLocation methods?
+                ridesDB.updateCurrentScooter(location)
 
-                Snackbar.make(binding.root.rootView, getString(R.string.ride_updated, s.currentScooter.toString()), Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.root.rootView, getString(R.string.ride_updated, ridesDB.getCurrentScooterInfo()), Snackbar.LENGTH_SHORT).show()
             }
         }
     }

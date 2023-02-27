@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ScooterSharing app V5</string>
+    <string name="scooter_sharing">Scooter Sharing</string>
+    <string name="start_ride">Start tur</string>
+    <string name="update_ride">Opdater tur</string>
+    <string name="start_name">Indtast Scooternavn</string>
+    <string name="start_location">Indtast lokation</string>
+    <string name="update_name">Scooternavn</string>
+    <string name="update_location">Lokation</string>
+    <string name="version">API Niveau %1$d</string>
+    <string name="ride_started">Tur startet ved brug af %1$s.</string>
+    <string name="ride_updated">Tur opdateret ved brug af %1$s.</string>
+    <string name="list_rides">Vis ture</string>
+    <string name="default_ride_name">Scooternavn</string>
+    <string name="default_ride_location">Lokation</string>
+    <string name="default_ride_date">Dato</string>
+    <string name="list_ride_click">Du klikkede på en tur med navnet: %1$s</string>
+</resources>

@@ -128,7 +128,7 @@ class RidesDB private constructor(context: Context) {
 /**
  * The DBHolder that ensures that multiple threads do not access and/or manipulate at the same time
  * @author Christophe Beyls & Fabricio Batista Narcizo
- * @see Article "Kotlin singletons with argument" - <a href="https://bladecoder.medium.com/kotlin-singletons-with-argument-194ef06edd9e">https://bladecoder.medium.com/kotlin-singletons-with-argument-194ef06edd9e</a>
+ * @see "Kotlin singletons with argument" - <a href="https://bladecoder.medium.com/kotlin-singletons-with-argument-194ef06edd9e">https://bladecoder.medium.com/kotlin-singletons-with-argument-194ef06edd9e</a>
  * @since 0.5.0
  */
 open class RidesDBHolder<out T: Any, in A>(creator: (A) -> T) {

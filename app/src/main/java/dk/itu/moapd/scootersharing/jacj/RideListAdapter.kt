@@ -41,7 +41,7 @@ class RideListAdapter(
         val ride = getItem(position)
         viewHolder.name.text = ride?.name
         viewHolder.location.text = ride?.location
-        viewHolder.date.text = ride?.timestamp?.let { ride.formatDate(it) }
+        viewHolder.date.text = ride?.timestamp?.let { ride.dateFormatted() }
         view?.setOnClickListener {
             Toast.makeText(
                 view.context,

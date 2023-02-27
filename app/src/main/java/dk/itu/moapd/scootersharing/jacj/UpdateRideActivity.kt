@@ -2,10 +2,17 @@ package dk.itu.moapd.scootersharing.jacj
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.view.WindowCompat
 import com.google.android.material.snackbar.Snackbar
 import dk.itu.moapd.scootersharing.jacj.databinding.ActivityUpdateRideBinding
 
+
+/**
+ * The Activity UI to update a ride, updating the location of the current scooter.
+ *
+ * @see [RidesDB.updateCurrentScooter]
+ * @author Jacob Møller Jensen
+ * @since 0.4.0
+ */
 class UpdateRideActivity : AppCompatActivity() {
     companion object {
         lateinit var ridesDB: RidesDB
@@ -22,13 +29,8 @@ class UpdateRideActivity : AppCompatActivity() {
 
         with(binding)
         {
-            if(ridesDB.getCurrentScooter() == null){
-                editTextName.setText(R.string.no_scooter_selected)
-            }
-            else {
-                editTextName.setText(ridesDB.getCurrentScooter()?.name)
-            }
-            //Start ride button
+            editTextName.setText(ridesDB.getCurrentScooter().name)
+            //Update ride button
             updateRideButton.setOnClickListener {
                 // Update the object attributes.
                 val location = editTextLocation.text.toString().trim()

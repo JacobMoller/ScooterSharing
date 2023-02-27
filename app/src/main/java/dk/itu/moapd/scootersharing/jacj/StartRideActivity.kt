@@ -2,10 +2,16 @@ package dk.itu.moapd.scootersharing.jacj
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.view.WindowCompat
 import com.google.android.material.snackbar.Snackbar
 import dk.itu.moapd.scootersharing.jacj.databinding.ActivityStartRideBinding
 
+
+/**
+ * The Activity UI to start a new ride, creating a new scooter
+ *
+ * @author Jacob Møller Jensen
+ * @since 0.4.0
+ */
 class StartRideActivity : AppCompatActivity() {
     companion object {
         lateinit var ridesDB: RidesDB

@@ -4,6 +4,12 @@ import android.content.Context
 import java.util.Random
 import kotlin.collections.ArrayList
 
+/**
+ * The collection of rides in the system.
+ * This can be accessed by other classes using the singleton pattern.
+ * @author Jacob Møller Jensen
+ * @since 0.5.0
+ */
 class RidesDB private constructor(context: Context) {
 
     private val rides = ArrayList <Scooter >()
@@ -48,10 +54,25 @@ class RidesDB private constructor(context: Context) {
         )
     }
 
+    /**
+     * Returns the list of rides.
+     *
+     * @return The collection of rides in the system as a List of Scooter objects
+     * @author Jacob Møller Jensen
+     * @since 0.5.0
+     */
     fun getRidesList(): List<Scooter> {
         return rides
     }
 
+    /**
+     * Adds a scooter to the list
+     *
+     * @param name the name of the new scooter
+     * @param location the location of the new scooter
+     * @author Jacob Møller Jensen
+     * @since 0.5.0
+     */
     fun addScooter(name: String , location: String) {
         //TODO: Name already exists. Must be unique. Propagate error to user some way?
         //if(!rides.any{ scooter -> scooter.name == name }){
@@ -61,12 +82,34 @@ class RidesDB private constructor(context: Context) {
         //throw IllegalArgumentException("A scooter with that value is already in the list.")
     }
 
+    /**
+     * Update the location of your current scooter
+     *
+     * @param location the new location of the current scooter
+     * @author Jacob Møller Jensen
+     * @since 0.5.0
+     */
     fun updateCurrentScooter(location: String) {
         rides.last().location = location
     }
 
+    /**
+     * Returns your current scooter
+     *
+     * @return The current scooter
+     * @author Jacob Møller Jensen
+     * @since 0.5.0
+     */
     fun getCurrentScooter(): Scooter = rides.last()
 
+    /**
+     * Returns the current scooters information
+     *
+     * @return The information about the current scooter as a string
+     * @see [Scooter.toString]
+     * @author Jacob Møller Jensen
+     * @since 0.5.0
+     */
     fun getCurrentScooterInfo(): String = getCurrentScooter().toString()
 
     /**
@@ -81,6 +124,13 @@ class RidesDB private constructor(context: Context) {
     }
 }
 
+
+/**
+ * The DBHolder that ensures that multiple threads do not access and/or manipulate at the same time
+ * @author Christophe Beyls & Fabricio Batista Narcizo
+ * @see Article "Kotlin singletons with argument" - <a href="https://bladecoder.medium.com/kotlin-singletons-with-argument-194ef06edd9e">https://bladecoder.medium.com/kotlin-singletons-with-argument-194ef06edd9e</a>
+ * @since 0.5.0
+ */
 open class RidesDBHolder<out T: Any, in A>(creator: (A) -> T) {
 
     private var creator: ((A) -> T)? = creator

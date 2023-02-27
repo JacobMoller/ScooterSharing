@@ -11,7 +11,6 @@
     <string name="ride_started">Ride started using %1$s.</string>
     <string name="ride_updated">Ride updated using %1$s.</string>
     <string name="list_rides">List Rides</string>
-    <string name="no_scooter_selected">No scooter selected</string>
     <string name="default_ride_name">Ride name</string>
     <string name="default_ride_location">Ride location</string>
     <string name="default_ride_date">Ride date</string>

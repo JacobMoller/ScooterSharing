@@ -5,8 +5,14 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
 import dk.itu.moapd.scootersharing.jacj.databinding.ActivityMainBinding
+
+/**
+ * Main entry point for the ScooterSharing app.
+ *
+ * @author Jacob Møller Jensen
+ * @since 0.1.0
+ */
 
 class MainActivity : AppCompatActivity() {
 

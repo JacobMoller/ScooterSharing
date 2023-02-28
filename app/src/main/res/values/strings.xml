@@ -7,12 +7,12 @@
     <string name="start_location">Enter your location</string>
     <string name="update_name">The current scooter name</string>
     <string name="update_location">The current scooter location</string>
-    <string name="version">API Level %1$d</string>
-    <string name="ride_started">Ride started using %1$s.</string>
-    <string name="ride_updated">Ride updated using %1$s.</string>
+    <string name="version">API Level %d</string>
+    <string name="ride_started">Ride started using %s.</string>
+    <string name="ride_updated">Ride updated using %s.</string>
     <string name="list_rides">List Rides</string>
     <string name="default_ride_name">Ride name</string>
     <string name="default_ride_location">Ride location</string>
     <string name="default_ride_date">Ride date</string>
-    <string name="list_ride_click">You clicked ride with the name: %1$s</string>
+    <string name="list_ride_click">You clicked ride with the name: %s</string>
 </resources>

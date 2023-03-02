@@ -16,4 +16,8 @@
     <string name="default_ride_location">Lokation</string>
     <string name="default_ride_date">Dato</string>
     <string name="list_ride_click">Du klikkede på en tur med navnet: %s</string>
+    <string name="delete_dialog_title">Slet tur</string>
+    <string name="delete_dialog_description">Er du sikker på at du vil slette denne tur?</string>
+    <string name="delete_dialog_cancel">Annuller</string>
+    <string name="delete_dialog_delete">Slet</string>
 </resources>

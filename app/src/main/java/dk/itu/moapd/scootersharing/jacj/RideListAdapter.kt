@@ -1,12 +1,12 @@
 package dk.itu.moapd.scootersharing.jacj
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import android.widget.Toast
 
 class RideListAdapter(
     context: Context,
@@ -43,13 +43,24 @@ class RideListAdapter(
         viewHolder.location.text = ride?.location
         viewHolder.date.text = ride?.timestamp?.let { ride.dateFormatted() }
         view?.setOnClickListener {
-            Toast.makeText(
-                view.context,
-                context.getString(R.string.list_ride_click, ride?.name),
-                Toast.LENGTH_SHORT
-            ).show()
+            AlertDialog.Builder(context)
+                .setTitle(R.string.delete_dialog_title)
+                .setMessage(R.string.delete_dialog_description)
+                .setPositiveButton(
+                    R.string.delete_dialog_delete
+                ) { dialog, which ->
+                    removeItem(position)
+                }
+                .setNegativeButton(R.string.delete_dialog_cancel, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show()
         }
 
         return view!!
+    }
+
+    private fun removeItem(position: Int) {
+        this.remove(this.getItem(position))
+        notifyDataSetChanged()
     }
 }

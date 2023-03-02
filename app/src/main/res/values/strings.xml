@@ -15,4 +15,8 @@
     <string name="default_ride_location">Ride location</string>
     <string name="default_ride_date">Ride date</string>
     <string name="list_ride_click">You clicked ride with the name: %s</string>
+    <string name="delete_dialog_title">Delete ride</string>
+    <string name="delete_dialog_description">Are you sure you want to delete this ride?</string>
+    <string name="delete_dialog_cancel">Cancel</string>
+    <string name="delete_dialog_delete">Delete</string>
 </resources>

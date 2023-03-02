@@ -75,41 +75,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/api_level" />
 
-    <com.google.android.flexbox.FlexboxLayout
-        android:id="@+id/flexboxLayout"
-        android:layout_width="0dp"
+    <include
+        android:id="@+id/list_item_header"
+        layout="@layout/list_rides_header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:padding="10dp"
-        app:justifyContent="space_between"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/list_rides_button"
-        android:visibility="gone" >
-
-        <TextView
-            android:id="@+id/ride_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/default_ride_name"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/ride_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/default_ride_location"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/ride_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/default_ride_date"
-            android:textStyle="bold" />
-    </com.google.android.flexbox.FlexboxLayout>
+        android:visibility="gone" />
 
     <ListView
         android:id="@+id/ride_list_view"
@@ -121,7 +98,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/flexboxLayout"
+        app:layout_constraintTop_toBottomOf="@+id/list_item_header"
         android:visibility="gone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

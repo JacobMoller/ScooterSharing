@@ -64,11 +64,11 @@ class MainFragment : Fragment() {
             listRidesButton.setOnClickListener {
                 if(rideListView.visibility == View.GONE){
                     rideListView.visibility = View.VISIBLE
-                    flexboxLayout.visibility = View.VISIBLE
+                    listItemHeader.root.visibility = View.VISIBLE
                 }
                 else{
                     rideListView.visibility = View.GONE
-                    flexboxLayout.visibility = View.GONE
+                    listItemHeader.root.visibility = View.GONE
                 }
             }
 

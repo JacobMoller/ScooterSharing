@@ -1,5 +1,6 @@
 package dk.itu.moapd.scootersharing.jacj
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +22,7 @@ class StartRideFragment: Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ridesDB = RidesDB.get(this@StartRideFragment.requireContext())
+        ridesDB = RidesDB.get(requireContext())
     }
 
     override fun onCreateView(
@@ -40,12 +41,21 @@ class StartRideFragment: Fragment() {
         {
             //Start ride button
             startRideButton.setOnClickListener {
-                // Update the object attributes.
-                val name = editTextName.text.toString().trim()
-                val location = editTextLocation.text.toString().trim()
-                ridesDB.addScooter(name, location)
+                AlertDialog.Builder(context)
+                    .setTitle(R.string.start_ride_dialog_title)
+                    .setMessage(R.string.start_ride_dialog_description)
+                    .setPositiveButton(
+                        R.string.dialog_add
+                    ) { _, _ ->
+                        val name = editTextName.text.toString().trim()
+                        val location = editTextLocation.text.toString().trim()
+                        ridesDB.addScooter(name, location)
 
-                Snackbar.make(binding.root.rootView, getString(R.string.ride_started, ridesDB.getCurrentScooterInfo()), Snackbar.LENGTH_SHORT).show()
+                        Snackbar.make(binding.root.rootView, getString(R.string.ride_started, ridesDB.getCurrentScooterInfo()), Snackbar.LENGTH_SHORT).show()
+                    }
+                    .setNegativeButton(R.string.dialog_cancel, null)
+                    .setIcon(android.R.drawable.ic_input_add)
+                    .show()
             }
         }
     }

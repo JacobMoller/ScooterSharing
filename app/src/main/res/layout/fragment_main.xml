@@ -77,7 +77,7 @@
 
     <include
         android:id="@+id/list_item_header"
-        layout="@layout/list_rides_header"
+        layout="@layout/list_item_ride_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -87,8 +87,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/list_rides_button"
         android:visibility="gone" />
-    <ListView
-        android:id="@+id/ride_list_view"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ride_recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -99,5 +100,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/list_item_header"
         android:visibility="gone" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

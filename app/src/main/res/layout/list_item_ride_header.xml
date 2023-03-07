@@ -2,11 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/list_item_header"
+    android:id="@+id/list_item_ride_header"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:justifyContent="space_between">
-
     <TextView
         android:id="@+id/ride_name"
         android:layout_width="0dp"

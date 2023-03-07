@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ScooterSharing app V5</string>
+    <string name="app_name">ScooterSharing app V6</string>
     <string name="scooter_sharing">Scooter Sharing</string>
     <string name="start_ride">Start Ride</string>
     <string name="update_ride">Update Ride</string>
@@ -14,9 +14,14 @@
     <string name="default_ride_name">Ride name</string>
     <string name="default_ride_location">Ride location</string>
     <string name="default_ride_date">Ride date</string>
-    <string name="list_ride_click">You clicked ride with the name: %s</string>
     <string name="delete_dialog_title">Delete ride</string>
     <string name="delete_dialog_description">Are you sure you want to delete this ride?</string>
-    <string name="delete_dialog_cancel">Cancel</string>
+    <string name="dialog_cancel">Cancel</string>
     <string name="delete_dialog_delete">Delete</string>
+    <string name="start_ride_dialog_title">Add ride</string>
+    <string name="start_ride_dialog_description">Are you sure you want to add this ride?</string>
+    <string name="dialog_add">Add</string>
+    <string name="dialog_update">Update</string>
+    <string name="update_ride_dialog_title">Update ride</string>
+    <string name="update_ride_dialog_description">Are you sure you want to update this ride?</string>
 </resources>

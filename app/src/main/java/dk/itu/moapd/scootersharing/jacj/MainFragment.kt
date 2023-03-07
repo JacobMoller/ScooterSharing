@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import dk.itu.moapd.scootersharing.jacj.databinding.FragmentMainBinding
 
 /**
@@ -31,7 +32,7 @@ class MainFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        ridesDB = RidesDB.get(this@MainFragment.requireContext())
+        ridesDB = RidesDB.get(requireContext())
     }
 
     override fun onCreateView(
@@ -40,12 +41,19 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
+
+        binding.rideRecyclerView.layoutManager = LinearLayoutManager(context)
+
+        val rides = ridesDB.getRidesList()
+        val adapter = RideListAdapter(requireContext(), rides as MutableList<Scooter>)
+        binding.rideRecyclerView.adapter = adapter
+
+        //Add swipe here
+
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         with(binding)
         {
             //Start ride button
@@ -62,13 +70,13 @@ class MainFragment : Fragment() {
             }
 
             listRidesButton.setOnClickListener {
-                if(rideListView.visibility == View.GONE){
-                    rideListView.visibility = View.VISIBLE
-                    listItemHeader.root.visibility = View.VISIBLE
+                if(rideRecyclerView.visibility == View.GONE){
+                    rideRecyclerView.visibility = View.VISIBLE
+                    listItemHeader.listItemRideHeader.visibility = View.VISIBLE
                 }
                 else{
-                    rideListView.visibility = View.GONE
-                    listItemHeader.root.visibility = View.GONE
+                    rideRecyclerView.visibility = View.GONE
+                    listItemHeader.listItemRideHeader.visibility = View.GONE
                 }
             }
 
@@ -76,9 +84,6 @@ class MainFragment : Fragment() {
             val version = Build.VERSION.SDK_INT
             apiLevel.text = getString(R.string.version, version)
 
-            //Create custom adapter
-            val adapter = RideListAdapter(this@MainFragment.requireContext(), R.layout.list_rides, ridesDB.getRidesList())
-            rideListView.adapter = adapter
         }
     }
 

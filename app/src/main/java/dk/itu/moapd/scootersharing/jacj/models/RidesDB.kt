@@ -1,4 +1,4 @@
-package dk.itu.moapd.scootersharing.jacj
+package dk.itu.moapd.scootersharing.jacj.models
 
 import android.content.Context
 import java.util.Random
@@ -12,7 +12,7 @@ import kotlin.collections.ArrayList
  */
 class RidesDB private constructor(context: Context) {
 
-    private val rides = ArrayList <Scooter >()
+    private val rides = ArrayList <Scooter>()
     companion object : RidesDBHolder<RidesDB, Context>(::RidesDB)
 
     init {

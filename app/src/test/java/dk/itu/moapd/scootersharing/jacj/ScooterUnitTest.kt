@@ -1,5 +1,6 @@
 package dk.itu.moapd.scootersharing.jacj
 
+import dk.itu.moapd.scootersharing.jacj.models.Scooter
 import org.junit.Test
 
 import org.junit.Assert.*

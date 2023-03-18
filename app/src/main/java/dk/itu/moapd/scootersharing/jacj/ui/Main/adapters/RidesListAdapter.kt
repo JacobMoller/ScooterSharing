@@ -1,12 +1,12 @@
-package dk.itu.moapd.scootersharing.jacj
+package dk.itu.moapd.scootersharing.jacj.ui.Main.adapters
 
 import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintSet.Motion
 import androidx.recyclerview.widget.RecyclerView
+import dk.itu.moapd.scootersharing.jacj.R
+import dk.itu.moapd.scootersharing.jacj.models.Scooter
 import dk.itu.moapd.scootersharing.jacj.databinding.ListItemRideBinding
 
 class ViewHolder(

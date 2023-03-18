@@ -1,4 +1,4 @@
-package dk.itu.moapd.scootersharing.jacj
+package dk.itu.moapd.scootersharing.jacj.ui.Main
 
 import android.os.Build
 import android.os.Bundle
@@ -8,7 +8,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.firebase.ui.auth.AuthUI
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import dk.itu.moapd.scootersharing.jacj.R
+import dk.itu.moapd.scootersharing.jacj.models.Scooter
 import dk.itu.moapd.scootersharing.jacj.databinding.FragmentMainBinding
+import dk.itu.moapd.scootersharing.jacj.models.RidesDB
+import dk.itu.moapd.scootersharing.jacj.ui.Main.adapters.RideListAdapter
 
 /**
  * Main fragment for the ScooterSharing app.
@@ -18,6 +26,8 @@ import dk.itu.moapd.scootersharing.jacj.databinding.FragmentMainBinding
  */
 
 class MainFragment : Fragment() {
+
+    private lateinit var auth: FirebaseAuth
 
     private var _binding: FragmentMainBinding? = null
     private val binding
@@ -33,6 +43,16 @@ class MainFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         ridesDB = RidesDB.get(requireContext())
+        auth = FirebaseAuth.getInstance()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (auth.currentUser == null)
+            //Switch to the login fragment.
+            findNavController().navigate(
+                R.id.show_login
+            )
     }
 
     override fun onCreateView(
@@ -56,6 +76,10 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding)
         {
+
+            //Set username
+            username.text = "Welcome " + getEmail()
+
             //Start ride button
             startRideButton.setOnClickListener {
                 findNavController().navigate(
@@ -80,6 +104,16 @@ class MainFragment : Fragment() {
                 }
             }
 
+            logoutButton.setOnClickListener {
+                AuthUI.getInstance()
+                    .signOut(requireContext())
+                    .addOnCompleteListener {
+                        findNavController().navigate(
+                            R.id.show_login
+                        )
+                    }
+            }
+
             // API Level
             val version = Build.VERSION.SDK_INT
             apiLevel.text = getString(R.string.version, version)
@@ -90,5 +124,10 @@ class MainFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun getEmail(): String {
+        val user = Firebase.auth.currentUser
+        return user?.email.toString()
     }
 }

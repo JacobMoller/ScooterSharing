@@ -1,4 +1,4 @@
-package dk.itu.moapd.scootersharing.jacj
+package dk.itu.moapd.scootersharing.jacj.ui.StartRide
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import dk.itu.moapd.scootersharing.jacj.R
+import dk.itu.moapd.scootersharing.jacj.models.RidesDB
 import dk.itu.moapd.scootersharing.jacj.databinding.FragmentStartRideBinding
 
 class StartRideFragment: Fragment() {

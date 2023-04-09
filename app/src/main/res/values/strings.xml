@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ScooterSharing app V6</string>
+    <string name="app_name">ScooterSharing app V8</string>
     <string name="scooter_sharing">Scooter Sharing</string>
     <string name="start_ride">Start Ride</string>
     <string name="update_ride">Update Ride</string>
@@ -11,6 +11,7 @@
     <string name="ride_started">Ride started using %s.</string>
     <string name="ride_updated">Ride updated using %s.</string>
     <string name="list_rides">List Rides</string>
+    <string name="logout">Log out</string>
     <string name="default_ride_name">Ride name</string>
     <string name="default_ride_location">Ride location</string>
     <string name="default_ride_date">Ride date</string>
@@ -24,4 +25,7 @@
     <string name="dialog_update">Update</string>
     <string name="update_ride_dialog_title">Update ride</string>
     <string name="update_ride_dialog_description">Are you sure you want to update this ride?</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+    <string name="build_and_api_version" translatable="false">v.%s (%s)</string>
 </resources>

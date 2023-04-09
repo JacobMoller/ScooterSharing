@@ -1,0 +1,28 @@
+{
+  "users": {
+    "[UID here]": {
+      ...
+      "rides": {
+        "[scooter-name] + [username] + [timestamp]? or just uuid": {
+          "scooter": "CPH001",
+          ...
+        }
+        ...
+      }
+      "RidesLocationUpdates": {
+        "rideslocationupdates-uid": { //Is this relevant?
+          ...
+        }
+        ...
+      }
+    },
+    ...
+  },
+  "scooters": {
+    "CPH001": {
+      "batteryLevel": "100",
+      ...
+    },
+    ...
+  }
+}

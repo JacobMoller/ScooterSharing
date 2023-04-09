@@ -1,16 +1,24 @@
 package dk.itu.moapd.scootersharing.jacj.ui.Main
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Card
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import dk.itu.moapd.scootersharing.jacj.R
 import dk.itu.moapd.scootersharing.jacj.models.Scooter
@@ -24,6 +32,8 @@ import dk.itu.moapd.scootersharing.jacj.ui.Main.adapters.RideListAdapter
  * @author Jacob Møller Jensen
  * @since 0.1.0
  */
+
+const val DATABASE_URL = "https://scooter-sharing-5c9ca-default-rtdb.europe-west1.firebasedatabase.app/"
 
 class MainFragment : Fragment() {
 
@@ -62,11 +72,18 @@ class MainFragment : Fragment() {
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
 
-        binding.rideRecyclerView.layoutManager = LinearLayoutManager(context)
+        var database = Firebase.database(DATABASE_URL).reference
 
-        val rides = ridesDB.getRidesList()
-        val adapter = RideListAdapter(requireContext(), rides as MutableList<Scooter>)
-        binding.rideRecyclerView.adapter = adapter
+        auth.currentUser?.let {
+            val query = database.child("scooters")
+            val options = FirebaseRecyclerOptions.Builder<Scooter>()
+                .setQuery(query, Scooter::class.java)
+                .setLifecycleOwner(this)
+                .build()
+            // Create the custom adapter to bind a list of dummy objects.
+            binding.rideRecyclerView.layoutManager = LinearLayoutManager(context)
+            binding.rideRecyclerView.adapter = RideListAdapter(this.requireContext(), options)
+        }
 
         //Add swipe here
 
@@ -104,6 +121,12 @@ class MainFragment : Fragment() {
                 }
             }
 
+            showScooterlistButton.setOnClickListener {
+                findNavController().navigate(
+                    R.id.show_scooterlist
+                )
+            }
+
             logoutButton.setOnClickListener {
                 AuthUI.getInstance()
                     .signOut(requireContext())
@@ -113,10 +136,6 @@ class MainFragment : Fragment() {
                         )
                     }
             }
-
-            // API Level
-            val version = Build.VERSION.SDK_INT
-            apiLevel.text = getString(R.string.version, version)
 
         }
     }

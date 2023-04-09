@@ -7,11 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import dk.itu.moapd.scootersharing.jacj.R
 import dk.itu.moapd.scootersharing.jacj.models.RidesDB
 import dk.itu.moapd.scootersharing.jacj.databinding.FragmentStartRideBinding
+import dk.itu.moapd.scootersharing.jacj.models.Scooter
+import dk.itu.moapd.scootersharing.jacj.ui.Main.DATABASE_URL
 
 class StartRideFragment: Fragment() {
+    private lateinit var auth: FirebaseAuth
+    var database = Firebase.database(DATABASE_URL).reference
     private var _binding: FragmentStartRideBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
@@ -25,6 +32,7 @@ class StartRideFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ridesDB = RidesDB.get(requireContext())
+        auth = FirebaseAuth.getInstance()
     }
 
     override fun onCreateView(
@@ -51,7 +59,12 @@ class StartRideFragment: Fragment() {
                     ) { _, _ ->
                         val name = editTextName.text.toString().trim()
                         val location = editTextLocation.text.toString().trim()
-                        ridesDB.addScooter(name, location)
+                        if (name.isNotEmpty()) {
+                            val timestamp = System.currentTimeMillis()
+                            val scooter = Scooter(name, location, timestamp)
+                            val scooters = database.child("scooters")
+                            scooters.child(name).setValue(scooter)
+                        }
 
                         Snackbar.make(binding.root.rootView, getString(R.string.ride_started, ridesDB.getCurrentScooterInfo()), Snackbar.LENGTH_SHORT).show()
                     }

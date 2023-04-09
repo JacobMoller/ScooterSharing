@@ -5,6 +5,9 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/mainFragment">
 
+    <action android:id="@+id/action_global_scooterlistFragment"
+        app:destination="@id/scooterListFragment"/>
+
     <fragment
         android:id="@+id/mainFragment"
         android:name="dk.itu.moapd.scootersharing.jacj.ui.Main.MainFragment"
@@ -19,6 +22,9 @@
         <action
             android:id="@+id/show_login"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/show_scooterlist"
+            app:destination="@id/scooterListFragment" />
     </fragment>
     <fragment
         android:id="@+id/startRideFragment"
@@ -33,9 +39,15 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="dk.itu.moapd.scootersharing.jacj.ui.Login.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/show_main"
             app:destination="@id/mainFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/scooterListFragment"
+        android:name="dk.itu.moapd.scootersharing.jacj.ui.ScooterList.ScooterListFragment"
+        android:label="ScooterListFragment"
+        tools:layout="@layout/fragment_scooterlist"/>
 </navigation>

@@ -13,8 +13,6 @@ import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.android.material.snackbar.Snackbar
 import dk.itu.moapd.scootersharing.jacj.R
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 
 class LoginFragment : Fragment() {
 
@@ -32,7 +30,6 @@ class LoginFragment : Fragment() {
             AuthUI.IdpConfig.EmailBuilder().build(),
             AuthUI.IdpConfig.PhoneBuilder().build(),
             AuthUI.IdpConfig.AnonymousBuilder().build(),
-            AuthUI.IdpConfig.FacebookBuilder().build(),
             AuthUI.IdpConfig.GoogleBuilder().build())
 
         // Create and launch sign-in intent.

@@ -17,6 +17,21 @@ import java.util.*
  * @since 0.3.0
  */
 //TODO: Check that since is right
+class Scooter(var name: String? = null, var location: String = "", var timestamp: Long? = null, var image: String = "") {
+    /**
+     * Formats the scooter saved timestamp to a string
+     *
+     * @return A string of form "HH:mm dd/MM yyyy". For example "12:00 01/01 1970".
+     * @author Jacob Møller Jensen
+     * @since 0.3.0
+     */
+    fun dateFormatted(): String {
+        val date = timestamp?.let { Date(it) }
+        val format = SimpleDateFormat("HH:mm dd/MM yyyy", Locale.GERMANY)
+        return format.format(date).toString()
+    }
+}
+/*
 class Scooter(val name: String, _location: String, var timestamp: Long = System.currentTimeMillis()){
     var location: String = _location
         set(newLocation) {
@@ -47,4 +62,4 @@ class Scooter(val name: String, _location: String, var timestamp: Long = System.
     override fun toString(): String {
         return "Scooter(name=$name, location=$location, timestamp=${dateFormatted()})"
     }
-}
+}*/

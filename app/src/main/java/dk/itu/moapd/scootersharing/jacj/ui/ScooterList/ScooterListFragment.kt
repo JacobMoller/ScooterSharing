@@ -1,13 +1,10 @@
 package dk.itu.moapd.scootersharing.jacj.ui.ScooterList
 
-import android.content.res.Resources.Theme
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -26,7 +23,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,6 +38,7 @@ import com.skydoves.landscapist.glide.GlideImage
 import dk.itu.moapd.scootersharing.jacj.DataState
 import dk.itu.moapd.scootersharing.jacj.MainViewModel
 import dk.itu.moapd.scootersharing.jacj.R
+import dk.itu.moapd.scootersharing.jacj.models.Coords
 import dk.itu.moapd.scootersharing.jacj.models.Scooter
 import dk.itu.moapd.scootersharing.jacj.ui.theme.*
 import java.net.URL
@@ -108,7 +105,7 @@ class ScooterListFragment : Fragment()  {
     @Preview
     @Composable
     private fun ShowLazyListPreview() {
-        val dummyScooters: List<Scooter> = listOf(Scooter("CPH001","ITU"), Scooter("CPH002","DR"))
+        val dummyScooters: List<Scooter> = listOf(Scooter("CPH001", "?", Coords(123.456,123.456)), Scooter("CPH002", "2", Coords(123.456,123.456)))
         LazyColumn {
             items(dummyScooters.toList()){scooter ->
                 ScooterCard(scooter)
@@ -163,7 +160,7 @@ class ScooterListFragment : Fragment()  {
                         )
                         Text(
                             modifier = modifier,
-                            text = scooter.location,
+                            text = scooter.location.toString(),
                             style = MaterialTheme.typography.bodyMedium,
                         )
                         Text(text = "Reserve",

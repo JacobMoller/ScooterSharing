@@ -23,7 +23,6 @@ import com.google.firebase.ktx.Firebase
 import dk.itu.moapd.scootersharing.jacj.R
 import dk.itu.moapd.scootersharing.jacj.models.Scooter
 import dk.itu.moapd.scootersharing.jacj.databinding.FragmentMainBinding
-import dk.itu.moapd.scootersharing.jacj.models.RidesDB
 import dk.itu.moapd.scootersharing.jacj.ui.Main.adapters.RideListAdapter
 
 /**
@@ -45,14 +44,8 @@ class MainFragment : Fragment() {
             "Cannot access binding because it is null. Is the view visible?"
         }
 
-    companion object {
-        lateinit var ridesDB: RidesDB
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        ridesDB = RidesDB.get(requireContext())
         auth = FirebaseAuth.getInstance()
     }
 
@@ -60,9 +53,7 @@ class MainFragment : Fragment() {
         super.onStart()
         if (auth.currentUser == null)
             //Switch to the login fragment.
-            findNavController().navigate(
-                R.id.show_login
-            )
+            findNavController().popBackStack(R.id.show_login, true)
     }
 
     override fun onCreateView(
@@ -100,13 +91,25 @@ class MainFragment : Fragment() {
             //Start ride button
             startRideButton.setOnClickListener {
                 findNavController().navigate(
-                    R.id.show_start_ride
+                    R.id.show_permissionstest
                 )
             }
 
             updateRideButton.setOnClickListener {
                 findNavController().navigate(
                     R.id.show_update_ride
+                )
+            }
+
+            mapsButton.setOnClickListener {
+                findNavController().navigate(
+                    R.id.show_newmaps
+                )
+            }
+
+            locationButton.setOnClickListener {
+                findNavController().navigate(
+                    R.id.show_location
                 )
             }
 
@@ -131,8 +134,8 @@ class MainFragment : Fragment() {
                 AuthUI.getInstance()
                     .signOut(requireContext())
                     .addOnCompleteListener {
-                        findNavController().navigate(
-                            R.id.show_login
+                        findNavController().popBackStack(
+                            R.id.show_login, false
                         )
                     }
             }

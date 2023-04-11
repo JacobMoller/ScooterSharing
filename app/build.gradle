@@ -17,6 +17,12 @@ android {
         versionName "0.0.8"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        Properties properties = new Properties()
+        properties.load(
+                project.rootProject.file("local.properties").newDataInputStream())
+        manifestPlaceholders = [
+                MAPS_API_KEY: "${properties.getProperty("MAPS_API_KEY")}"]
     }
 
     buildTypes {
@@ -70,7 +76,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.firebaseui:firebase-ui-auth:8.0.0'
-    implementation 'com.google.android.gms:play-services-auth:20.4.0'
+    implementation 'com.google.android.gms:play-services-auth:20.5.0'
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.3'
     implementation 'com.google.firebase:firebase-database-ktx'
     implementation 'com.firebaseui:firebase-ui-database:7.1.1'
@@ -80,9 +86,13 @@ dependencies {
     implementation 'androidx.compose.ui:ui-tooling:1.1.1'
     implementation 'androidx.compose.material:material:1.1.1'
     implementation 'androidx.activity:activity-compose:1.4.0'
+    implementation 'com.google.accompanist:accompanist-permissions:0.31.0-alpha'
     implementation 'com.firebaseui:firebase-ui-storage:8.0.0'
     implementation "com.github.skydoves:landscapist-glide:2.1.9"
     implementation 'com.google.firebase:firebase-storage-ktx'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+    implementation 'com.google.maps.android:maps-compose:2.11.4'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
     testImplementation 'junit:junit:4.13.2'
     debugImplementation("androidx.fragment:fragment-testing:1.5.5")

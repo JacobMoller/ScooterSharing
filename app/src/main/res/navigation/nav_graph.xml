@@ -25,6 +25,15 @@
         <action
             android:id="@+id/show_scooterlist"
             app:destination="@id/scooterListFragment" />
+        <action
+            android:id="@+id/show_location"
+            app:destination="@id/locationFragment" />
+        <action
+            android:id="@+id/show_newmaps"
+            app:destination="@id/newMapsFragment" />
+        <action
+            android:id="@+id/show_permissionstest"
+            app:destination="@id/permissionsTest" />
     </fragment>
     <fragment
         android:id="@+id/startRideFragment"
@@ -50,4 +59,18 @@
         android:name="dk.itu.moapd.scootersharing.jacj.ui.ScooterList.ScooterListFragment"
         android:label="ScooterListFragment"
         tools:layout="@layout/fragment_scooterlist"/>
+    <fragment
+        android:id="@+id/locationFragment"
+        android:name="dk.itu.moapd.scootersharing.jacj.ui.Location.LocationFragment"
+        android:label="LocationFragment"
+        tools:layout="@layout/fragment_location"/>
+    <fragment
+        android:id="@+id/newMapsFragment"
+        android:name="dk.itu.moapd.scootersharing.jacj.ui.Maps.NewMapsFragment"
+        android:label="NewMapsFragment"
+        />
+    <fragment
+        android:id="@+id/permissionsTest"
+        android:name="dk.itu.moapd.scootersharing.jacj.ui.PermissionsTest.PermissionsTest"
+        android:label="PermissionsTest" />
 </navigation>

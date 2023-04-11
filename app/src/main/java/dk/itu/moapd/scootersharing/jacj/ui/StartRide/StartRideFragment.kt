@@ -11,8 +11,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import dk.itu.moapd.scootersharing.jacj.R
-import dk.itu.moapd.scootersharing.jacj.models.RidesDB
 import dk.itu.moapd.scootersharing.jacj.databinding.FragmentStartRideBinding
+import dk.itu.moapd.scootersharing.jacj.models.Coords
 import dk.itu.moapd.scootersharing.jacj.models.Scooter
 import dk.itu.moapd.scootersharing.jacj.ui.Main.DATABASE_URL
 
@@ -25,13 +25,8 @@ class StartRideFragment: Fragment() {
             "Cannot access binding because it is null. Is the view visible?"
         }
 
-    companion object {
-        lateinit var ridesDB: RidesDB
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ridesDB = RidesDB.get(requireContext())
         auth = FirebaseAuth.getInstance()
     }
 
@@ -61,12 +56,12 @@ class StartRideFragment: Fragment() {
                         val location = editTextLocation.text.toString().trim()
                         if (name.isNotEmpty()) {
                             val timestamp = System.currentTimeMillis()
-                            val scooter = Scooter(name, location, timestamp)
+                            val scooter = Scooter(name, "3", Coords(123.456,123.456), timestamp)
                             val scooters = database.child("scooters")
                             scooters.child(name).setValue(scooter)
                         }
 
-                        Snackbar.make(binding.root.rootView, getString(R.string.ride_started, ridesDB.getCurrentScooterInfo()), Snackbar.LENGTH_SHORT).show()
+                        Snackbar.make(binding.root.rootView, getString(R.string.ride_started, "?"), Snackbar.LENGTH_SHORT).show()
                     }
                     .setNegativeButton(R.string.dialog_cancel, null)
                     .setIcon(android.R.drawable.ic_input_add)

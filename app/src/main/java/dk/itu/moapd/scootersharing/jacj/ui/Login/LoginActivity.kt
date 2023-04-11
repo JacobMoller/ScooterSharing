@@ -49,12 +49,4 @@ class LoginActivity : AppCompatActivity() {
             R.id.show_main
         )*/
     }
-
-    private fun signOut() {
-        AuthUI.getInstance()
-            .signOut(this)
-            .addOnCompleteListener {
-                // ...
-            }
-    }
 }

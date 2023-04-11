@@ -16,8 +16,10 @@ import java.util.*
  * @author Jacob Møller Jensen
  * @since 0.3.0
  */
+class Coords(var lat: Double? = 0.0, var long: Double? = 0.0)
+
 //TODO: Check that since is right
-class Scooter(var name: String? = null, var location: String = "", var timestamp: Long? = null, var image: String = "") {
+class Scooter(var name: String? = null, var location: String? = null, var coords: Coords? = null, var timestamp: Long? = null, var image: String = "") {
     /**
      * Formats the scooter saved timestamp to a string
      *

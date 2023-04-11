@@ -33,7 +33,7 @@ class RideListAdapter(
 
         holder.apply {
             binding.rideName.text = scooter.name
-            binding.rideLocation.text = scooter.location
+            binding.rideLocation.text = scooter.location.toString()
             binding.rideDate.text = scooter.timestamp.let { scooter.dateFormatted() }
         }
         view.setOnClickListener {

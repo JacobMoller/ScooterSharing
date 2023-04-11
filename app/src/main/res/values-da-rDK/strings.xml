@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ScooterSharing app V8</string>
     <string name="scooter_sharing">Scooter Sharing</string>
     <string name="start_ride">Start tur</string>
     <string name="update_ride">Opdater tur</string>
@@ -28,4 +27,6 @@
     <string name="update_ride_dialog_description">Er du sikker på at du vil opdatere denne tur?</string>
     <string name="nav_open">Åben</string>
     <string name="nav_close">Luk</string>
+    <string name="maps">Kort</string>
+    <string name="location">Lokation</string>
 </resources>

@@ -177,9 +177,9 @@ class LocationFragment : Fragment(){
     private fun updateUI(location: Location) {
         //if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)
             binding.apply {
-                latitudeTextField?.editText?.setText(location.latitude.toString())
-                longitudeTextField?.editText?.setText(location.longitude.toString())
-                timeTextField?.editText?.setText(location.time.toDateString())
+                latitudeTextField.editText?.setText(location.latitude.toString())
+                longitudeTextField.editText?.setText(location.longitude.toString())
+                timeTextField.editText?.setText(location.time.toDateString())
             }
             setAddress(location.latitude, location.longitude)
     }
@@ -201,11 +201,9 @@ class LocationFragment : Fragment(){
         // Return an array of Addresses that attempt to describe the area immediately surrounding
         // the given latitude and longitude.
         if (Build.VERSION.SDK_INT >= 33) {
-            // After `Tiramisu Android OS`, it is needed to use a listener to avoid blocking the main
-            // thread waiting for results.
             val geocodeListener = Geocoder.GeocodeListener { addresses ->
                 addresses.firstOrNull()?.toAddressString()?.let { address ->
-                    binding.addressTextField?.editText?.setText(address)
+                    binding.addressTextField.editText?.setText(address)
                 }
             }
             geocoder.getFromLocation(latitude, longitude, 1, geocodeListener)
@@ -213,7 +211,7 @@ class LocationFragment : Fragment(){
         else {
             geocoder.getFromLocation(latitude, longitude, 1)?.let { addresses ->
                 addresses.firstOrNull()?.toAddressString()?.let { address ->
-                    binding.addressTextField?.editText?.setText(address)
+                    binding.addressTextField.editText?.setText(address)
                 }
             }
         }

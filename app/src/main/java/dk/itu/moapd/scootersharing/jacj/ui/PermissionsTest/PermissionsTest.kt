@@ -16,6 +16,7 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import com.google.accompanist.permissions.*
+import kotlinx.coroutines.delay
 
 
 @OptIn(ExperimentalPermissionsApi::class)
@@ -44,11 +45,12 @@ class PermissionsTest : Fragment() {
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-private fun Sample(multiplePermissionsState: MultiplePermissionsState) {
+fun Sample(multiplePermissionsState: MultiplePermissionsState) {
     if (multiplePermissionsState.allPermissionsGranted) {
         // If all permissions are granted, then show screen with the feature enabled
         Text("Fine and Coarse location permissions Granted! Thank you!")
     } else {
+        multiplePermissionsState.run { launchMultiplePermissionRequest() }
         Column {
             Text(
                 getTextToShowGivenPermissions(
@@ -65,7 +67,7 @@ private fun Sample(multiplePermissionsState: MultiplePermissionsState) {
 }
 
 @OptIn(ExperimentalPermissionsApi::class)
-private fun getTextToShowGivenPermissions(
+fun getTextToShowGivenPermissions(
     permissions: List<PermissionState>,
     shouldShowRationale: Boolean
 ): String {

@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
 import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
@@ -62,4 +64,9 @@ class LoginFragment : Fragment() {
             R.id.show_main
         )
     }
+}
+
+@Composable
+fun LoginComposable(){
+    Text(text = "Login")
 }

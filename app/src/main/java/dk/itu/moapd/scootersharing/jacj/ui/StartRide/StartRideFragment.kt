@@ -14,7 +14,8 @@ import dk.itu.moapd.scootersharing.jacj.R
 import dk.itu.moapd.scootersharing.jacj.databinding.FragmentStartRideBinding
 import dk.itu.moapd.scootersharing.jacj.models.Coords
 import dk.itu.moapd.scootersharing.jacj.models.Scooter
-import dk.itu.moapd.scootersharing.jacj.ui.Main.DATABASE_URL
+
+const val DATABASE_URL = "https://scooter-sharing-5c9ca-default-rtdb.europe-west1.firebasedatabase.app/"
 
 class StartRideFragment: Fragment() {
     private lateinit var auth: FirebaseAuth

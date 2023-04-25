@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/scooterListFragment"
-        android:name="dk.itu.moapd.scootersharing.jacj.ui.ScooterList.ScooterListFragment"
+        android:name="dk.itu.moapd.scootersharing.jacj.ui.ScooterList.ScooterListScreen"
         android:label="ScooterListFragment"
         tools:layout="@layout/fragment_scooterlist"/>
     <fragment

@@ -1,29 +1,32 @@
 package dk.itu.moapd.scootersharing.jacj.ui.Main
 
+import android.Manifest
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.ComposeView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.firebase.ui.auth.AuthUI
-import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import dk.itu.moapd.scootersharing.jacj.R
-import dk.itu.moapd.scootersharing.jacj.models.Scooter
-import dk.itu.moapd.scootersharing.jacj.databinding.FragmentMainBinding
-import dk.itu.moapd.scootersharing.jacj.ui.Main.adapters.RideListAdapter
+import dk.itu.moapd.scootersharing.jacj.services.Location.LocationService
+import dk.itu.moapd.scootersharing.jacj.ui.destinations.TestScreenDestination
 
 /**
  * Main fragment for the ScooterSharing app.
@@ -31,125 +34,51 @@ import dk.itu.moapd.scootersharing.jacj.ui.Main.adapters.RideListAdapter
  * @author Jacob Møller Jensen
  * @since 0.1.0
  */
-
-const val DATABASE_URL = "https://scooter-sharing-5c9ca-default-rtdb.europe-west1.firebasedatabase.app/"
-
+/*
 class MainFragment : Fragment() {
+
+    private lateinit var composeView: ComposeView
 
     private lateinit var auth: FirebaseAuth
 
-    private var _binding: FragmentMainBinding? = null
-    private val binding
-        get() = checkNotNull(_binding) {
-            "Cannot access binding because it is null. Is the view visible?"
-        }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("HEEEE", "Making auth")
         auth = FirebaseAuth.getInstance()
-    }
 
-    override fun onStart() {
-        super.onStart()
-        if (auth.currentUser == null)
-            //Switch to the login fragment.
-            findNavController().popBackStack(R.id.show_login, true)
+        //Location permissions
+        ActivityCompat.requestPermissions(
+            requireActivity(),
+            arrayOf(
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ),
+            0
+        )
     }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
-
-        var database = Firebase.database(DATABASE_URL).reference
-
-        auth.currentUser?.let {
-            val query = database.child("scooters")
-            val options = FirebaseRecyclerOptions.Builder<Scooter>()
-                .setQuery(query, Scooter::class.java)
-                .setLifecycleOwner(this)
-                .build()
-            // Create the custom adapter to bind a list of dummy objects.
-            binding.rideRecyclerView.layoutManager = LinearLayoutManager(context)
-            binding.rideRecyclerView.adapter = RideListAdapter(this.requireContext(), options)
+        return ComposeView(requireContext()).also {
+            composeView = it
         }
-
-        //Add swipe here
-
-        return binding.root
     }
+    override fun onResume() {
+        super.onResume()
+        if (auth.currentUser == null) {
+            //Switch to the login fragment.
+            Log.d("HEEEE", "going to login")
+            findNavController().popBackStack(R.id.show_login, true)
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding)
-        {
 
-            //Set username
-            username.text = "Welcome " + getEmail()
-
-            //Start ride button
-            startRideButton.setOnClickListener {
-                findNavController().navigate(
-                    R.id.show_permissionstest
-                )
-            }
-
-            updateRideButton.setOnClickListener {
-                findNavController().navigate(
-                    R.id.show_update_ride
-                )
-            }
-
-            mapsButton.setOnClickListener {
-                findNavController().navigate(
-                    R.id.show_newmaps
-                )
-            }
-
-            locationButton.setOnClickListener {
-                findNavController().navigate(
-                    R.id.show_location
-                )
-            }
-
-            listRidesButton.setOnClickListener {
-                if(rideRecyclerView.visibility == View.GONE){
-                    rideRecyclerView.visibility = View.VISIBLE
-                    listItemHeader.listItemRideHeader.visibility = View.VISIBLE
-                }
-                else{
-                    rideRecyclerView.visibility = View.GONE
-                    listItemHeader.listItemRideHeader.visibility = View.GONE
-                }
-            }
-
-            showScooterlistButton.setOnClickListener {
-                findNavController().navigate(
-                    R.id.show_scooterlist
-                )
-            }
-
-            logoutButton.setOnClickListener {
-                AuthUI.getInstance()
-                    .signOut(requireContext())
-                    .addOnCompleteListener {
-                        findNavController().popBackStack(
-                            R.id.show_login, false
-                        )
-                    }
-            }
+        composeView.setContent {
 
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    private fun getEmail(): String {
-        val user = Firebase.auth.currentUser
-        return user?.email.toString()
-    }
-}
+}*/
